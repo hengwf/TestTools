@@ -23,3 +23,10 @@ string To_String(int n)
   ss[j] = '\0';
   return ss;
 }
+
+int main()
+{
+
+  cout << " string is " << To_String(123456789).c_str() << endl;
+  return 0;
+}
