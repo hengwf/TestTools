@@ -2,6 +2,13 @@
 #include<string>
 using namespace std;
 #define max 100
+
+
+#define IS_DIGIT(_arg_)	({				\
+	 	char _ch_ = _arg_;				\
+		(_ch_ >= '0' && _ch_ <= '9');	\
+	 })	
+
 string To_String(int n)
 {
   int m = n;
@@ -24,9 +31,38 @@ string To_String(int n)
   return ss;
 }
 
+int myatoi(const char *str)
+{
+	int integer = 0;
+	const char * p = str;
+	int flag = 1;
+
+	switch (*p) {
+	case '+':
+		p ++;
+		break;
+	case '-':
+		flag = -1;
+		p ++;
+		break;
+	default:
+		break;
+	}
+
+	for (; '\0' != *p && IS_DIGIT(*p); p ++) {
+		integer *= 10;
+		integer += *p - '0';
+	}
+	
+	return flag > 0 ? integer : -integer;
+}
+
+
+
 int main()
 {
 
   cout << " string is " << To_String(123456789).c_str() << endl;
+  cout << myatoi("-12345678") << endl;
   return 0;
 }
